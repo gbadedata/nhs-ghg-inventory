@@ -1,0 +1,70 @@
+{
+  "what": "Trust-level totals of the ERIC 2025/26 site-data fields in config/mapping.yaml, computed independently of this Python code (JavaScript in a browser, reading the official CSV directly from files.digital.nhs.uk). The pipeline must reproduce these from the raw file.",
+  "source_file": {
+    "url": "https://files.digital.nhs.uk/75/EEA227/ERIC%20-%202025_26%20-%20Site%20data%20-%20v3.csv",
+    "bytes": 6184296,
+    "sha256": "b77cf6956854a08f96f9669e9d8d78c245873f7e643b9ca7fc99dafa233844fd"
+  },
+  "extracted": "2026-11-25",
+  "method": "Decode windows-1252; row 1 = field codes, row 2 = field names, rows 3+ = sites. Per trust: sum every value matching ^-?\\d+(\\.\\d+)?$ ('Not Applicable' skipped), sums rounded to 6 dp, zero written as empty. n_energy_sites = sites with a numeric 'Gas consumed (kWh)'. gia_energy_reporting_m2 = floor area of those sites.",
+  "files": {
+    "eric_2025_26_trust_activity.csv": "6f6f2d2164b69c8e13864f34aaa433d1abb9ab8576e363616ab81a7e5a908133",
+    "eric_2025_26_trust_gia_energy.csv": "a2d86188561074fc879533795124086963ba2b884bfc298118897d78d0b95a77",
+    "eric_2025_26_trust_names.csv": "d61240ff2894d6bea71a911cb7f6aea236c21d0b9f50368cf815f5f7270c80f5",
+    "eric_2025_26_trust_totals_independent.csv": "5c1ac69f1f512dfa21f5816397531b13aac8d0ac23046bf70eb52fd03446f4d0"
+  },
+  "fixture": {
+    "file": "../fixtures/eric_2025_26_site_RDE.csv",
+    "what": "All 19 site rows for East Suffolk and North Essex NHS FT (RDE), the 15 identifier columns plus the 26 mapped fields, copied verbatim from the source file and re-encoded windows-1252 with CRLF line ends. sha256 of the UTF-8, LF version: 7b7a264ecb9ba1038002ba386b52e96dd19103e63c70fe934c710e59c26bd296"
+  },
+  "region_idx": [
+    "LONDON COMMISSIONING REGION",
+    "NORTH WEST COMMISSIONING REGION",
+    "NORTH EAST AND YORKSHIRE COMMISSIONING REGION",
+    "SOUTH WEST COMMISSIONING REGION",
+    "MIDLANDS COMMISSIONING REGION",
+    "SOUTH EAST COMMISSIONING REGION",
+    "EAST OF ENGLAND COMMISSIONING REGION"
+  ],
+  "type_idx": [
+    "MENTAL HEALTH AND LEARNING DISABILITY",
+    "ACUTE - TEACHING",
+    "ACUTE - LARGE",
+    "COMMUNITY",
+    "ACUTE - MULTI-SERVICE",
+    "ACUTE - MEDIUM",
+    "ACUTE - SPECIALIST",
+    "ACUTE - SMALL",
+    "AMBULANCE",
+    "CARE TRUST"
+  ],
+  "national_totals": {
+    "S02_01": 27904700,
+    "S05_11": 8076793595,
+    "S05_12": 58929725,
+    "S22_06": 32590934,
+    "S05_14": 1103278545,
+    "S05_41": 1666418985,
+    "S05_52": 19770341,
+    "S05_35": 31012907,
+    "S05_37": 893672,
+    "S05_39": 1367668,
+    "S05_54": 23567576,
+    "S06_08": 129345322,
+    "S06_09": 67948538,
+    "S09_01": 37296971,
+    "S10_40": 39020.53,
+    "S10_42": 43350.93,
+    "S10_44": 75158.08,
+    "S10_46": 341.23,
+    "S10_72": 3260.55,
+    "S10_48": 1496.11,
+    "S10_50": 48661.26,
+    "S10_74": 117844.84,
+    "S10_52": 13394.93,
+    "S10_58": 1611.79,
+    "S10_64": 23850.19,
+    "S04_31": 3071130217
+  },
+  "independent_totals": "Per-trust total tCO2e (location and market) recomputed end to end in JavaScript from the raw site rows and the DESNZ values, with no shared code. The Python inventory must match to 0.001 t (1 kg)."
+}

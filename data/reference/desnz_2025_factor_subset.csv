@@ -1,0 +1,24 @@
+id,scope,level_1,level_2,level_3,level_4,column_text,uom,ghg_unit,factor_raw
+1_100_1004_6_1,Scope 1,Fuels,Gaseous fuels,Natural gas,,,kWh (Gross CV),kg CO2e,0.18296000000000001
+1_101_1014_6_1,Scope 1,Fuels,Liquid fuels,Gas oil,,,kWh (Gross CV),kg CO2e,0.25650000000000001
+2_104_1045_5_1,Scope 1,Bioenergy,Biomass,Wood pellets,,,kWh,kg CO2e,1.15E-2
+99_104_1045_5_2,Outside of Scopes,Outside of scopes,Biomass,Wood pellets,,,kWh,kg CO2e of CO2 per unit,0.35
+7_400_4000_5_1,Scope 2,UK electricity,Electricity generated,Electricity: UK,kWh,,kWh,kg CO2e,0.17699999999999999
+10_401_4003_5_1,Scope 2,Heat and steam,Heat and steam,District heat and steam,kWh,,kWh,kg CO2e,0.17529
+11_100_1004_6_1,Scope 3,WTT- fuels,Gaseous fuels,Natural gas,,,kWh (Gross CV),kg CO2e,3.0210000000000001E-2
+11_101_1014_6_1,Scope 3,WTT- fuels,Liquid fuels,Gas oil,,,kWh (Gross CV),kg CO2e,5.9130000000000002E-2
+12_901_1045_5_1,Scope 3,WTT- bioenergy,WTT- biomass,Wood pellets,,,kWh,kg CO2e,3.7440000000000001E-2
+13_402_4000_5_1,Scope 3,Transmission and distribution,T&D- UK electricity,Electricity: UK,kWh,,kWh,kg CO2e,1.8530000000000001E-2
+15_917_4000_5_1,Scope 3,WTT- UK electricity,WTT- UK electricity (generation),Electricity: UK,kWh,,kWh,kg CO2e,4.5900000000000003E-2
+15_918_4000_5_1,Scope 3,WTT- UK electricity,WTT- UK electricity (T&D),Electricity: UK,kWh,,kWh,kg CO2e,3.9699999999999996E-3
+16_919_4003_5_1,Scope 3,WTT- heat and steam,WTT- heat and steam,District heat and steam,kWh,,kWh,kg CO2e,3.3410000000000002E-2
+13_403_4004_5_1,Scope 3,Transmission and distribution,Distribution - district heat & steam,5% loss,kWh,,kWh,kg CO2e,9.4500000000000001E-3
+16_920_4004_5_1,Scope 3,WTT- heat and steam,WTT- district heat & steam distribution,5% loss,kWh,,kWh,kg CO2e,1.7600000000000001E-3
+17_404_4005_1_1,Scope 3,Water supply,Water supply,Water supply,,,cubic metres,kg CO2e,0.1913
+18_405_4006_1_1,Scope 3,Water treatment,Water treatment,Water treatment,,,cubic metres,kg CO2e,0.17088
+20_507_5313_15_1,Scope 3,Waste disposal,Refuse,Commercial and industrial waste,,Landfill,tonnes,kg CO2e,520.53269999999998
+20_506_5450_15_1,Scope 3,Waste disposal,Paper,Paper and board: mixed,,Closed-loop,tonnes,kg CO2e,4.6856799999999996
+20_507_5311_15_1,Scope 3,Waste disposal,Refuse,Commercial and industrial waste,,Incineration with Energy Recovery,tonnes,kg CO2e,4.6856799999999996
+20_507_5293_15_1,Scope 3,Waste disposal,Refuse,Organic: food and drink waste,,Anaerobic digestion,tonnes,kg CO2e,8.9831099999999999
+20_506_5457_15_1,Scope 3,Waste disposal,Paper,Paper and board: paper,,Closed-loop,tonnes,kg CO2e,4.6856799999999996
+1_100_1003_6_1,Scope 1,Fuels,Gaseous fuels,LPG,,,kWh (Gross CV),kg CO2e,0.2145

@@ -1,0 +1,102 @@
+# ERIC 2025/26 site-data fields used by this inventory.
+#
+# The reader checks BOTH the code (row 1 of the CSV) and the exact field name
+# (row 2). ERIC's codes are not stable: the 2025/26 Data Definitions workbook
+# numbers the same fields differently (e.g. "Steam consumed" is S06_08 in the
+# CSV but S07_22 in the definitions, where S06_08 is "Exported electricity").
+# Matching on code alone would silently read the wrong column after a reshuffle.
+
+eric_fields:
+  - {code: S02_01, key: gia_m2,                    unit: m2,     name: "Gross internal floor area (m²)"}
+  - {code: S05_11, key: gas_kwh,                   unit: kWh,    name: "Gas consumed (kWh)"}
+  - {code: S05_12, key: oil_kwh,                   unit: kWh,    name: "Oil consumed (kWh)"}
+  - {code: S22_06, key: biofuel_kwh,               unit: kWh,    name: "Non-fossil fuel - renewable consumed (kWh)"}
+  - {code: S05_14, key: elec_green_tariff_kwh,     unit: kWh,    name: "Electricity - green electricity consumed (kWh)"}
+  - {code: S05_41, key: elec_other_kwh,            unit: kWh,    name: "Electricity - other consumed (kWh)"}
+  - {code: S05_52, key: elec_chp_import_kwh,       unit: kWh,    name: "Electricity purchased from CHP consumed (kWh)"}
+  - {code: S05_35, key: elec_solar_own_kwh,        unit: kWh,    name: "Electricity - trust owned solar consumed (kWh)"}
+  - {code: S05_37, key: elec_solar_3p_kwh,         unit: kWh,    name: "Electricity - third party owned solar consumed (kWh)"}
+  - {code: S05_39, key: elec_other_renewables_kwh, unit: kWh,    name: "Electricity - other renewables consumed (kWh)"}
+  - {code: S05_54, key: heat_chp_import_kwh,       unit: kWh,    name: "Thermal energy purchased from CHP consumed (kWh)"}
+  - {code: S06_08, key: steam_kwh,                 unit: kWh,    name: "Steam consumed (kWh)"}
+  - {code: S06_09, key: hot_water_kwh,             unit: kWh,    name: "Hot water consumed (kWh)"}
+  - {code: S09_01, key: water_m3,                  unit: m3,     name: "Water volume (including borehole) (m³)"}
+  - {code: S10_40, key: waste_clinical_incin_t,    unit: tonnes, name: "Incineration (clinical waste) weight (Tonnes)"}
+  - {code: S10_42, key: waste_clinical_alt_t,      unit: tonnes, name: "Alternative Treatment (clinical waste) weight (Tonnes)"}
+  - {code: S10_44, key: waste_offensive_t,         unit: tonnes, name: "Offensive waste weight (Tonnes)"}
+  - {code: S10_46, key: waste_clinical_onsite_t,   unit: tonnes, name: "Clinical waste (excluding incineration) processed on site weight (Tonnes)"}
+  - {code: S10_72, key: waste_clinical_municipal_t, unit: tonnes, name: "Clinical waste processed at municipal waste plants weight (Tonnes)"}
+  - {code: S10_48, key: waste_domestic_landfill_t, unit: tonnes, name: "Domestic waste (landfill) weight (Tonnes)"}
+  - {code: S10_50, key: waste_domestic_recycling_t, unit: tonnes, name: "Domestic waste (recycling) weight (Tonnes)"}
+  - {code: S10_74, key: waste_domestic_incin_t,    unit: tonnes, name: "Domestic waste (incineration) weight (Tonnes)"}
+  - {code: S10_52, key: waste_domestic_food_t,     unit: tonnes, name: "Domestic waste (food) weight (Tonnes)"}
+  - {code: S10_58, key: waste_domestic_onsite_t,   unit: tonnes, name: "Domestic waste (excluding incineration) processed on site weight (Tonnes)"}
+  - {code: S10_64, key: waste_confidential_t,      unit: tonnes, name: "Confidential waste weight (Tonnes)"}
+  # Informational only: never multiplied by a factor. ERIC's definition of
+  # "Gas consumed" already includes gas used to feed CHP, so adding this
+  # would double count ~3.07 TWh nationally (see METHODOLOGY.md, D2).
+  - {code: S04_31, key: chp_gas_input_kwh,         unit: kWh,    name: "Fossil energy (Gas) input to CHP system/s (kWh)"}
+
+# The only non-numeric value ERIC uses in these fields. It means "not
+# collected for this site" (unoccupied, or leased and fully serviced by the
+# landlord) and is kept as missing, never as zero. Any other text is an error.
+not_applicable_token: "Not Applicable"
+
+parameters:
+  # Share of supplied water returned to sewer, used for wastewater treatment.
+  # 95% is the standard UK return-to-sewer allowance used in sewerage charging.
+  wastewater_return_fraction: 0.95
+
+# Derived activities (sums of the fields above).
+derived:
+  grid_elec_kwh: [elec_green_tariff_kwh, elec_other_kwh, elec_chp_import_kwh]
+  market_elec_kwh: [elec_other_kwh, elec_chp_import_kwh]
+  heat_kwh: [steam_kwh, hot_water_kwh, heat_chp_import_kwh]
+  wastewater_m3: {from: water_m3, times_parameter: wastewater_return_fraction}
+
+# Factor IDs are quoted: unquoted, YAML 1.1 reads 1_100_1004_6_1 as the
+# integer 1100100461 (underscores are digit separators) and the lookup fails.
+#
+# One line per (activity x factor). `basis` says which Scope 2 total a line
+# feeds: location, market, or both (lines outside Scope 2 are always "both").
+emission_lines:
+  # ---- Scope 1 -----------------------------------------------------------
+  - {line: S1_gas,         scope: "Scope 1", category: "Stationary combustion - natural gas",       activity: gas_kwh,        factor: "1_100_1004_6_1", basis: both}
+  - {line: S1_oil,         scope: "Scope 1", category: "Stationary combustion - oil (as gas oil)",  activity: oil_kwh,        factor: "1_101_1014_6_1", basis: both}
+  - {line: S1_biofuel,     scope: "Scope 1", category: "Stationary combustion - biofuel (CH4, N2O)", activity: biofuel_kwh,   factor: "2_104_1045_5_1", basis: both}
+  # ---- Scope 2 -----------------------------------------------------------
+  - {line: S2_elec_loc,    scope: "Scope 2", category: "Purchased electricity",                     activity: grid_elec_kwh,  factor: "7_400_4000_5_1", basis: location}
+  - {line: S2_elec_mkt,    scope: "Scope 2", category: "Purchased electricity",                     activity: market_elec_kwh, factor: "7_400_4000_5_1", basis: market}
+  - {line: S2_heat,        scope: "Scope 2", category: "Purchased heat and steam",                  activity: heat_kwh,       factor: "10_401_4003_5_1", basis: both}
+  # ---- Scope 3, category 3: fuel- and energy-related activities ----------
+  - {line: S3_wtt_gas,     scope: "Scope 3", category: "Cat 3 - WTT fuels",                         activity: gas_kwh,        factor: "11_100_1004_6_1", basis: both}
+  - {line: S3_wtt_oil,     scope: "Scope 3", category: "Cat 3 - WTT fuels",                         activity: oil_kwh,        factor: "11_101_1014_6_1", basis: both}
+  - {line: S3_wtt_biofuel, scope: "Scope 3", category: "Cat 3 - WTT fuels",                         activity: biofuel_kwh,    factor: "12_901_1045_5_1", basis: both}
+  - {line: S3_wtt_elec_gen, scope: "Scope 3", category: "Cat 3 - WTT electricity",                  activity: grid_elec_kwh,  factor: "15_917_4000_5_1", basis: both}
+  - {line: S3_td_elec,     scope: "Scope 3", category: "Cat 3 - T&D losses",                        activity: grid_elec_kwh,  factor: "13_402_4000_5_1", basis: both}
+  - {line: S3_wtt_td_elec, scope: "Scope 3", category: "Cat 3 - WTT electricity",                   activity: grid_elec_kwh,  factor: "15_918_4000_5_1", basis: both}
+  - {line: S3_wtt_heat,    scope: "Scope 3", category: "Cat 3 - WTT heat and steam",                activity: heat_kwh,       factor: "16_919_4003_5_1", basis: both}
+  - {line: S3_dist_heat,   scope: "Scope 3", category: "Cat 3 - T&D losses",                        activity: heat_kwh,       factor: "13_403_4004_5_1", basis: both}
+  - {line: S3_wtt_dist_heat, scope: "Scope 3", category: "Cat 3 - WTT heat and steam",              activity: heat_kwh,       factor: "16_920_4004_5_1", basis: both}
+  # ---- Scope 3, category 1: purchased goods and services -----------------
+  - {line: S3_water_supply, scope: "Scope 3", category: "Cat 1 - Water supply",                     activity: water_m3,       factor: "17_404_4005_1_1", basis: both}
+  # ---- Scope 3, category 5: waste generated in operations ----------------
+  - {line: S3_wastewater,  scope: "Scope 3", category: "Cat 5 - Wastewater",                        activity: wastewater_m3,  factor: "18_405_4006_1_1", basis: both}
+  - {line: S3_waste_landfill, scope: "Scope 3", category: "Cat 5 - Waste",                          activity: waste_domestic_landfill_t,  factor: "20_507_5313_15_1", basis: both}
+  - {line: S3_waste_recycling, scope: "Scope 3", category: "Cat 5 - Waste",                         activity: waste_domestic_recycling_t, factor: "20_506_5450_15_1", basis: both}
+  - {line: S3_waste_incin, scope: "Scope 3", category: "Cat 5 - Waste",                             activity: waste_domestic_incin_t,     factor: "20_507_5311_15_1", basis: both}
+  - {line: S3_waste_food,  scope: "Scope 3", category: "Cat 5 - Waste",                             activity: waste_domestic_food_t,      factor: "20_507_5293_15_1", basis: both}
+  - {line: S3_waste_confidential, scope: "Scope 3", category: "Cat 5 - Waste",                      activity: waste_confidential_t,       factor: "20_506_5457_15_1", basis: both}
+  # ---- Outside of scopes (reported, never added to totals) ---------------
+  - {line: OOS_biofuel_co2, scope: "Outside of scopes", category: "Biogenic CO2 from biofuel",      activity: biofuel_kwh,    factor: "99_104_1045_5_2", basis: both}
+
+# Reported in tonnes but given no tCO2e: DESNZ publishes no factor for these
+# routes, and its "incineration with energy recovery" factor covers only
+# transport (4.69 kg/t), which would understate clinical waste. See D9.
+unquantified_waste:
+  - waste_clinical_incin_t
+  - waste_clinical_alt_t
+  - waste_offensive_t
+  - waste_clinical_onsite_t
+  - waste_clinical_municipal_t
+  - waste_domestic_onsite_t

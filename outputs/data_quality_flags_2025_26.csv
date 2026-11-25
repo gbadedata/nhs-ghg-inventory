@@ -1,0 +1,36 @@
+trust_code,trust_name,check,detail,description
+RXT,BIRMINGHAM AND SOLIHULL MENTAL HEALTH NHS FOUNDATION TRUST,DQ01,"both 4,094,352 kWh",Green-tariff and other electricity are identical (likely the same figure entered twice)
+REN,CLATTERBRIDGE CANCER CENTRE NHS FOUNDATION TRUST,DQ02,"steam_kwh = heat_chp_import_kwh = 3,264,586 kWh","Two heat fields are identical (steam, hot water, CHP heat) - possible double entry"
+R1H,BARTS HEALTH NHS TRUST,DQ03,hot_water_kwh=1,An energy field is between 0 and 10 kWh for the whole year (likely a placeholder)
+RRE,MIDLANDS PARTNERSHIP UNIVERSITY NHS FOUNDATION TRUST,DQ03,steam_kwh=1,An energy field is between 0 and 10 kWh for the whole year (likely a placeholder)
+RXY,KENT AND MEDWAY MENTAL HEALTH NHS TRUST,DQ03,steam_kwh=2,An energy field is between 0 and 10 kWh for the whole year (likely a placeholder)
+RDE,EAST SUFFOLK AND NORTH ESSEX NHS FOUNDATION TRUST,DQ04,"biofuel 19,640,789 kWh = 43% of fuel burned","Non-fossil renewable fuel is at least 25% of fuel burned: the unspecified-fuel assumption (wood pellets, D6) matters"
+RJ7,ST GEORGE'S UNIVERSITY HOSPITALS NHS FOUNDATION TRUST,DQ05,"CHP gas 97,688,315 vs gas 96,569,663 kWh","Gas fed to CHP exceeds total gas consumed, which ERIC's definitions say includes CHP feed"
+RMC,BOLTON NHS FOUNDATION TRUST,DQ05,"CHP gas 23,628,000 vs gas 22,876,861 kWh","Gas fed to CHP exceeds total gas consumed, which ERIC's definitions say includes CHP feed"
+RCX,THE QUEEN ELIZABETH HOSPITAL KING'S LYNN NHS FOUNDATION TRUST,DQ07,"1,298 kWh/m² vs type median 423",Energy intensity outside 1/3x-3x the median for its trust type
+RPG,OXLEAS NHS FOUNDATION TRUST,DQ07,772 kWh/m² vs type median 233,Energy intensity outside 1/3x-3x the median for its trust type
+RY2,BRIDGEWATER COMMUNITY HEALTHCARE NHS FOUNDATION TRUST,DQ07,54 kWh/m² vs type median 221,Energy intensity outside 1/3x-3x the median for its trust type
+R0A,MANCHESTER UNIVERSITY NHS FOUNDATION TRUST,DQ08,15 of 35 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RBT,THE MID CHESHIRE HOSPITALS NHS FOUNDATION TRUST,DQ08,3 of 8 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RCF,AIREDALE NHS FOUNDATION TRUST,DQ08,1 of 3 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RDE,EAST SUFFOLK AND NORTH ESSEX NHS FOUNDATION TRUST,DQ08,6 of 19 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RGT,CAMBRIDGE UNIVERSITY HOSPITALS NHS FOUNDATION TRUST,DQ08,4 of 11 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RHW,ROYAL BERKSHIRE NHS FOUNDATION TRUST,DQ08,2 of 9 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RJ6,CROYDON HEALTH SERVICES NHS TRUST,DQ08,4 of 9 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RJ7,ST GEORGE'S UNIVERSITY HOSPITALS NHS FOUNDATION TRUST,DQ08,3 of 7 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RKB,UNIVERSITY HOSPITALS COVENTRY AND WARWICKSHIRE NHS TRUST,DQ08,3 of 8 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RM3,NORTHERN CARE ALLIANCE NHS FOUNDATION TRUST,DQ08,8 of 23 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RMP,TAMESIDE AND GLOSSOP INTEGRATED CARE NHS FOUNDATION TRUST,DQ08,2 of 13 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RN7,DARTFORD AND GRAVESHAM NHS TRUST,DQ08,3 of 7 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RP1,NORTHAMPTONSHIRE HEALTHCARE NHS FOUNDATION TRUST,DQ08,9 of 20 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RP6,MOORFIELDS EYE HOSPITAL NHS FOUNDATION TRUST,DQ08,5 of 11 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RQW,THE PRINCESS ALEXANDRA HOSPITAL NHS TRUST,DQ08,2 of 8 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RQX,HOMERTON HEALTHCARE NHS FOUNDATION TRUST,DQ08,3 of 8 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RTR,SOUTH TEES HOSPITALS NHS FOUNDATION TRUST,DQ08,3 of 10 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RVR,EPSOM AND ST HELIER UNIVERSITY HOSPITALS NHS TRUST,DQ08,4 of 9 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RWJ,STOCKPORT NHS FOUNDATION TRUST,DQ08,3 of 9 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RWX,BERKSHIRE HEALTHCARE NHS FOUNDATION TRUST,DQ08,10 of 21 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RXL,BLACKPOOL TEACHING HOSPITALS NHS FOUNDATION TRUST,DQ08,5 of 15 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RY2,BRIDGEWATER COMMUNITY HEALTHCARE NHS FOUNDATION TRUST,DQ08,3 of 13 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RY5,LINCOLNSHIRE COMMUNITY HEALTH SERVICES NHS TRUST,DQ08,4 of 10 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap
+RYX,CENTRAL LONDON COMMUNITY HEALTHCARE NHS TRUST,DQ08,11 of 29 sites,Fewer than half of sites report energy (the rest are mostly landlord-serviced leases): coverage gap

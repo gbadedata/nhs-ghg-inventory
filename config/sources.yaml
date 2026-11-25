@@ -1,0 +1,32 @@
+# Every input is pinned by URL, byte size and SHA-256. `nhs-ghg fetch` refuses
+# a file whose hash differs, so a silent republication cannot change results.
+
+reporting_period:
+  label: "2025/26"
+  start: "2025-04-01"
+  end: "2026-03-31"
+  # DESNZ "majority" approach: an April-March year uses the factors for the
+  # calendar year holding most of the data (Apr-Dec 2025 -> 2025 factors).
+  factor_year: 2025
+
+sources:
+  desnz_2025_flat:
+    title: "UK Government GHG Conversion Factors for Company Reporting 2025 - flat file (v1, final)"
+    publisher: "Department for Energy Security and Net Zero (DESNZ)"
+    page: "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2025"
+    url: "https://assets.publishing.service.gov.uk/media/6846b6ea57f3515d9611f0dd/ghg-conversion-factors-2025-flat-format.xlsx"
+    filename: "ghg-conversion-factors-2025-flat-format.xlsx"
+    bytes: 505634
+    sha256: "8bfdb45b81ec4a88e3bdf4584637330f62e6bd09ce1940e654c5d7b7f736de94"
+    licence: "Open Government Licence v3.0"
+
+  eric_2025_26_site:
+    title: "Estates Returns Information Collection (ERIC) 2025/26 - Site data (v3)"
+    publisher: "NHS England"
+    page: "https://digital.nhs.uk/data-and-information/publications/statistical/estates-returns-information-collection/summary-page-and-dataset-for-eric-2025-26"
+    url: "https://files.digital.nhs.uk/75/EEA227/ERIC%20-%202025_26%20-%20Site%20data%20-%20v3.csv"
+    filename: "ERIC - 2025_26 - Site data - v3.csv"
+    bytes: 6184296
+    sha256: "b77cf6956854a08f96f9669e9d8d78c245873f7e643b9ca7fc99dafa233844fd"
+    licence: "Open Government Licence v3.0"
+    published: "2026-10-15"

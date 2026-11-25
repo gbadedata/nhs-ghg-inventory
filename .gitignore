@@ -1,0 +1,9 @@
+# Source files are downloaded and hash-checked by `nhs-ghg fetch`, never committed.
+data/raw/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+build/
+dist/

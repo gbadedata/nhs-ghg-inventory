@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"   # weekly: catch a silent republication of either source
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: outputs are reproducible from the committed extract
+        run: |
+          nhs-ghg run --source golden
+          git diff --exit-code outputs/ data/processed/
+
+  verify-sources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: download pinned sources (fails if a hash changed)
+        run: nhs-ghg fetch
+      - name: pinned factors and golden extract match the official files
+        run: nhs-ghg verify
+      - name: full test suite including raw-file tests
+        run: pytest -q
+      - name: inventory rebuilt from raw equals the committed outputs
+        run: |
+          nhs-ghg run --source raw
+          git diff --exit-code outputs/trust_inventory_2025_26.csv outputs/line_items_2025_26.csv
